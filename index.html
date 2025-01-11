@@ -4,21 +4,42 @@
     <meta charset="UTF-8">
     <script src="angular.min.js"></script>
     <script src="app.js"></script>
-    <title>First AngularJS App</title>
+    <title>Renzo Conversions Page</title>
 </head>
 <body ng-app="MyFirstApp">
-<h1>My First AngularJS app !!</h1>
-<div>
-    <label for="name">Enter Your Name: </label>
-    <input type="text" id="name" value="">
+
+<h1>Simples Conversiones</h1>
+
+<div ng-controller="MyFirstController">
+    <table><tr><td>
+    <h3>Temperatura</h3>
+    </td></tr>
+    <tr>
+        <td><label for="cent">Centigrado:</label></td>
+        <td><input type="text" id="cent" size="3"
+               ng-model="cent"
+               ng-keyup="calculateCent();">
+        </td>
+        <td>En Fahrenheit:</td><td>{{centOut}}</td>
+    </tr>
+    <tr>
+        <td><label for="fare">Fahrenheit:</label></td>
+        <td><input type="text" id="fare" size="3"
+               ng-model="fare"
+               ng-keyup="calculateFare();">
+        </td>
+        <td>En Centigrado:</td><td>{{fareOut}}</td>
+    </tr>
+    </table>
 </div>
 <br>
-<div ng-controller="MyFirstController">
+
+<!--
+<div ng-controller="UpperController">
     <input type="text"
-           ng-model="name"
-           ng-keyup="calculateValue();">
-    <br>
-    Total Value = {{totalValue}}
+           ng-model="name2"
+           ng-blur="upperFunc();">
 </div>
+-->
 </body>
 </html>
