@@ -14,7 +14,7 @@ angular.module('MyFirstApp', [])
         if ( ! $scope.cent )
             $scope.centOut = "";
         else
-            $scope.centOut = getFahrenheit($scope.cent);
+            $scope.centOut = Math.round(getFahrenheit($scope.cent));
     };
 
     $scope.calculateFare = function() {

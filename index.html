@@ -11,24 +11,25 @@
 <h1>Simples Conversiones</h1>
 
 <div ng-controller="MyFirstController">
-    <table><tr><td>
-    <h3>Temperatura</h3>
-    </td></tr>
+    <table>
+    <tr>
+        <th colspan="4"><h3>Temperatura</h3></th>
+    </tr>
     <tr>
         <td><label for="cent">Centigrado:</label></td>
-        <td><input type="text" id="cent" size="3"
+        <td style="height:40px;padding-right:30px"><input type="text" id="cent" size="3"
                ng-model="cent"
                ng-keyup="calculateCent();">
         </td>
-        <td>En Fahrenheit:</td><td>{{centOut}}</td>
+        <td>En Fahrenheit:</td><td><b>{{centOut}}</b></td>
     </tr>
     <tr>
-        <td><label for="fare">Fahrenheit:</label></td>
+        <td style="height:40px"><label for="fare">Fahrenheit:</label></td>
         <td><input type="text" id="fare" size="3"
                ng-model="fare"
                ng-keyup="calculateFare();">
         </td>
-        <td>En Centigrado:</td><td>{{fareOut}}</td>
+        <td>En Centigrado:</td><td><b>{{fareOut}}</b></td>
     </tr>
     </table>
 </div>
