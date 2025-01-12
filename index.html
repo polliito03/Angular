@@ -13,23 +13,27 @@
 <div ng-controller="MyFirstController">
     <table>
     <tr>
-        <th colspan="4"><h3>Temperatura</h3></th>
+        <th colspan="6"><h3>Temperatura</h3></th>
     </tr>
     <tr>
-        <td><label for="cent">Centigrado:</label></td>
-        <td style="height:40px;padding-right:30px"><input type="text" id="cent" size="3"
+        <td style="height:40px;"><label for="cent">Centigrado:</label></td>
+        <td><button ng-click="diffCent(-1);">-1</button></td>
+        <td><input type="text" id="cent" size="2"
                ng-model="cent"
                ng-keyup="calculateCent();">
         </td>
-        <td>En Fahrenheit:</td><td><b>{{centOut}}</b></td>
+        <td><button ng-click="diffCent(1);">+1</button></td>
+        <td style="padding-left:30px">En Fahrenheit:</td><td><b>{{centOut}}</b></td>
     </tr>
     <tr>
         <td style="height:40px"><label for="fare">Fahrenheit:</label></td>
-        <td><input type="text" id="fare" size="3"
+        <td><button ng-click="diffFare(-1);">-1</button></td>
+        <td><input type="text" id="fare" size="2"
                ng-model="fare"
                ng-keyup="calculateFare();">
         </td>
-        <td>En Centigrado:</td><td><b>{{fareOut}}</b></td>
+        <td><button ng-click="diffFare(1);">+1</button></td>
+        <td style="padding-left:30px">En Centigrado:</td><td><b>{{fareOut}}</b></td>
     </tr>
     </table>
 </div>

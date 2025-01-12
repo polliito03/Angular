@@ -10,15 +10,39 @@ angular.module('MyFirstApp', [])
     $scope.fare = 32;
     $scope.fareOut = 0;
 
+    // Function to diff amount from Celsius number
+    $scope.diffCent = function(diff) {
+        if ( $scope.cent === "" )
+            $scope.centOut = "";
+        else {
+            var x = parseInt($scope.cent, 10);
+            var n = parseInt(diff, 10);
+            $scope.cent = x + n;
+            $scope.calculateCent();
+        }
+    };
+
+    // Function to diff amount from Fahrenheit number
+    $scope.diffFare = function(diff) {
+        if ( $scope.fare === "" )
+            $scope.fareOut = "";
+        else {
+            var x = parseInt($scope.fare, 10);
+            var n = parseInt(diff, 10);
+            $scope.fare = x + n;
+            $scope.calculateFare();
+        }
+    };
+
     $scope.calculateCent = function() {
-        if ( ! $scope.cent )
+        if ( $scope.cent === "" )
             $scope.centOut = "";
         else
             $scope.centOut = Math.round(getFahrenheit($scope.cent));
     };
 
     $scope.calculateFare = function() {
-        if ( ! $scope.fare )
+        if ( $scope.fare === "" )
             $scope.fareOut = "";
         else
             $scope.fareOut = Math.round(getCelsius($scope.fare));
