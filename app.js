@@ -2,9 +2,12 @@
 
 'use strict';
 
-angular.module('MyFirstApp', [])
+angular.module('MyConversionApp', [])
+.controller('tempController', TemperatureController);
 
-.controller('MyFirstController', function ($scope) {
+TemperatureController.$inject = ['$scope'];
+
+function TemperatureController($scope) {
     $scope.cent = 0;
     $scope.centOut = 32;
     $scope.fare = 32;
@@ -60,7 +63,7 @@ angular.module('MyFirstApp', [])
         return temp;
     };
 
-});
+};
 /*
 .controller('UpperController', function ($scope, $filter) {
     $scope.name2 = "uno";
