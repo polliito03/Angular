@@ -3,11 +3,12 @@
 'use strict';
 
 angular.module('MyConversionApp', [])
-.controller('tempController', TemperatureController);
+.controller('tempController', TemperatureController)
+.filter('celsius', CelsiusFilter);
 
-TemperatureController.$inject = ['$scope'];
+TemperatureController.$inject = ['$scope', 'celsiusFilter'];
 
-function TemperatureController($scope) {
+function TemperatureController($scope, celsiusFilter) {
     $scope.cent = 0;
     $scope.centOut = 32;
     $scope.fare = 32;
@@ -47,8 +48,11 @@ function TemperatureController($scope) {
     $scope.calculateFare = function() {
         if ( $scope.fare === "" )
             $scope.fareOut = "";
-        else
-            $scope.fareOut = Math.round(getCelsius($scope.fare));
+        else {
+            //$scope.fareOut = Math.round(getCelsius($scope.fare));
+            var celsius = celsiusFilter($scope.fare);
+            $scope.fareOut = Math.round(celsius);
+        }
     };
 
     function getFahrenheit(string) {
@@ -57,13 +61,16 @@ function TemperatureController($scope) {
         return temp;
     };
 
-    function getCelsius(string) {
-        var x = parseInt(string, 10);
-        var temp = (x - 32) * 5/9;
+};
+
+// Custom filter to convert temperature to celsius
+function CelsiusFilter() {
+    return function (input) {
+        var temp = (input - 32) * 5/9;
         return temp;
     };
-
 };
+
 /*
 .controller('UpperController', function ($scope, $filter) {
     $scope.name2 = "uno";
