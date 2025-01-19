@@ -38,7 +38,13 @@
     </tr>
     </table>
 </div>
-<br>
+
+<div ng-controller="tempController">
+    <h3>Lista de Temperaturas</h3>
+    <ul>
+        <li ng-repeat="item in tempArray">{{item.celsius}} Centigrado = {{item.fare}} Fahrenheit</li>
+    </ul>
+</div>
 
 <!--
 <div ng-controller="UpperController">

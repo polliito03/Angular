@@ -8,11 +8,23 @@ angular.module('MyConversionApp', [])
 
 TemperatureController.$inject = ['$scope', 'celsiusFilter'];
 
+//
+// Controller: TemperatureController
+//
 function TemperatureController($scope, celsiusFilter) {
     $scope.cent = 0;
     $scope.centOut = 32;
     $scope.fare = 32;
     $scope.fareOut = 0;
+
+    $scope.tempArray = [
+        {celsius: 0,
+        fare: getFahrenheit("0")},
+        {celsius: 5,
+        fare: getFahrenheit("5")},
+        {celsius: 10,
+        fare: getFahrenheit("10")},
+    ];
 
     // Function to diff amount from Celsius number
     $scope.diffCent = function(diff) {
@@ -61,7 +73,7 @@ function TemperatureController($scope, celsiusFilter) {
         return temp;
     };
 
-};
+};  // end controller
 
 // Custom filter to convert temperature to celsius
 function CelsiusFilter() {
@@ -70,6 +82,7 @@ function CelsiusFilter() {
         return temp;
     };
 };
+
 
 /*
 .controller('UpperController', function ($scope, $filter) {
