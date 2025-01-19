@@ -44,6 +44,21 @@
     <ul>
         <li ng-repeat="item in tempArray">{{item.celsius}} Centigrado = {{item.fare}} Fahrenheit</li>
     </ul>
+    <h3>TEST ONE:</h3>
+    <div ng-controller="parentController">
+        <p>Once Name: {{::name}}</p>
+        <p>Parent centOut: {{centOut}}</p>
+        <p>{{log()}}</p>
+        <p>Scope Name: {{name}}</p>
+    </div>
+    <h3>TEST TWO:</h3>
+    <div ng-controller="parentController as par">
+        <p>Instance First: {{par.first}}</p>
+        <p>Instance Name: {{name}}</p>
+        <p>{{par.setFirst()}}</p>
+        <p>Instance First: {{par.first}}</p>
+        <p>Instance Name: {{name}}</p>
+    </div>
 </div>
 
 <!--

@@ -4,9 +4,12 @@
 
 angular.module('MyConversionApp', [])
 .controller('tempController', TemperatureController)
+.controller('parentController', ParentController)
 .filter('celsius', CelsiusFilter);
 
 TemperatureController.$inject = ['$scope', 'celsiusFilter'];
+ParentController.$inject = ['$scope'];
+
 
 //
 // Controller: TemperatureController
@@ -75,6 +78,7 @@ function TemperatureController($scope, celsiusFilter) {
 
 };  // end controller
 
+
 // Custom filter to convert temperature to celsius
 function CelsiusFilter() {
     return function (input) {
@@ -82,7 +86,6 @@ function CelsiusFilter() {
         return temp;
     };
 };
-
 
 /*
 .controller('UpperController', function ($scope, $filter) {
@@ -95,5 +98,25 @@ function CelsiusFilter() {
 
 });
 */
+
+//
+// CONSTRUCTOR: ParentController
+//
+function ParentController($scope) {
+    this.first = "First Name";
+    $scope.name = "PapaScope";
+
+    $scope.log = function() {
+        //console.log(this);
+        $scope.name = "Updated";
+        this.first = "Renzo";
+    };
+
+    this.setFirst = function() {
+        this.first = "Renzo";
+    };
+
+};
+
 // END
 }) ();
