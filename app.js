@@ -4,28 +4,30 @@
 
 angular.module('MyConversionApp', [])
 .controller('tempController', TemperatureController)
-.controller('parentController', ParentController)
-.service('listService', ListService)
+.service('historyService', HistoryService)
 .filter('celsius', CelsiusFilter);
 
-TemperatureController.$inject = ['$scope', 'celsiusFilter'];
-ParentController.$inject = ['$scope'];
-
+TemperatureController.$inject = ['$scope', 'celsiusFilter', 'historyService'];
 
 
 //
-// Service/Constructor: ListService
+// Service: HistoryService
 //
-function ListService() {
-    var listArray = [
-        {
-            celsius: 0,
-            fare: 32
-        }
-    ];
+function HistoryService()
+{
+    var historyArray = [];
 
     this.addItem = function(celsius, fare) {
-        this.listArray.addItem(celsius, fare);
+        var item = {
+            _celsius: celsius,
+            _fare: fare
+        };
+
+        historyArray.push(item);
+    };
+
+    this.getItems = function() {
+        return historyArray;
     };
 }
 
@@ -33,7 +35,10 @@ function ListService() {
 //
 // Controller: TemperatureController
 //
-function TemperatureController($scope, celsiusFilter) {
+function TemperatureController($scope, celsiusFilter, historyService)
+{
+    this.items = historyService.getItems();
+
     $scope.cent = 0;
     $scope.centOut = 32;
     $scope.fare = 32;
@@ -57,6 +62,9 @@ function TemperatureController($scope, celsiusFilter) {
             var n = parseInt(diff, 10);
             $scope.cent = x + n;
             $scope.calculateCent();
+
+            // add to history list
+            historyService.addItem($scope.cent, $scope.centOut);
         }
     };
 
@@ -69,6 +77,9 @@ function TemperatureController($scope, celsiusFilter) {
             var n = parseInt(diff, 10);
             $scope.fare = x + n;
             $scope.calculateFare();
+
+            // add to history list
+            historyService.addItem($scope.fareOut, $scope.fare);
         }
     };
 
@@ -106,36 +117,5 @@ function CelsiusFilter() {
     };
 };
 
-/*
-.controller('UpperController', function ($scope, $filter) {
-    $scope.name2 = "uno";
 
-    $scope.upperFunc = function() {
-        var upCase = $filter('uppercase');
-        $scope.name2 = upCase($scope.name2);
-    };
-
-});
-*/
-
-//
-// CONSTRUCTOR: ParentController
-//
-function ParentController($scope) {
-    this.first = "First Name";
-    $scope.name = "PapaScope";
-
-    $scope.log = function() {
-        //console.log(this);
-        $scope.name = "Updated";
-        this.first = "Renzo";
-    };
-
-    this.setFirst = function() {
-        this.first = "Renzo";
-    };
-
-};
-
-// END
 }) ();
