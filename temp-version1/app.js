@@ -5,29 +5,10 @@
 angular.module('MyConversionApp', [])
 .controller('tempController', TemperatureController)
 .controller('parentController', ParentController)
-.service('listService', ListService)
 .filter('celsius', CelsiusFilter);
 
 TemperatureController.$inject = ['$scope', 'celsiusFilter'];
 ParentController.$inject = ['$scope'];
-
-
-
-//
-// Service/Constructor: ListService
-//
-function ListService() {
-    var listArray = [
-        {
-            celsius: 0,
-            fare: 32
-        }
-    ];
-
-    this.addItem = function(celsius, fare) {
-        this.listArray.addItem(celsius, fare);
-    };
-}
 
 
 //

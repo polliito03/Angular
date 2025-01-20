@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <script src="angular.min.js"></script>
+    <script src="app.js"></script>
+    <title>Renzo Conversions Page</title>
+</head>
+<body ng-app="MyConversionApp">
+
+<h1>Simples Conversiones</h1>
+
+<div ng-controller="tempController">
+    <table>
+    <tr>
+        <th colspan="6"><h3>Temperatura</h3></th>
+    </tr>
+    <tr>
+        <td style="height:40px;"><label for="cent">Centigrado:</label></td>
+        <td><button ng-click="diffCent(-1);">-1</button></td>
+        <td><input type="text" id="cent" size="2"
+               ng-model="cent"
+               ng-keyup="calculateCent();">
+        </td>
+        <td><button ng-click="diffCent(1);">+1</button></td>
+        <td style="padding-left:30px">En Fahrenheit:</td><td><b>{{centOut}}</b></td>
+    </tr>
+    <tr>
+        <td style="height:40px"><label for="fare">Fahrenheit:</label></td>
+        <td><button ng-click="diffFare(-1);">-1</button></td>
+        <td><input type="text" id="fare" size="2"
+               ng-model="fare"
+               ng-keyup="calculateFare();">
+        </td>
+        <td><button ng-click="diffFare(1);">+1</button></td>
+        <td style="padding-left:30px">En Centigrado:</td><td><b>{{fareOut}}</b></td>
+    </tr>
+    </table>
+</div>
+
+<div ng-controller="tempController">
+    <h3>Lista de Temperaturas</h3>
+    <ul>
+        <li ng-repeat="item in tempArray">{{item.celsius}} Centigrado = {{item.fare}} Fahrenheit</li>
+    </ul>
+    <h3>TEST ONE:</h3>
+    <div ng-controller="parentController">
+        <p>Once Name: {{::name}}</p>
+        <p>Parent centOut: {{centOut}}</p>
+        <p>{{log()}}</p>
+        <p>Scope Name: {{name}}</p>
+    </div>
+    <h3>TEST TWO:</h3>
+    <div ng-controller="parentController as par">
+        <p>Instance First: {{par.first}}</p>
+        <p>Instance Name: {{name}}</p>
+        <p>{{par.setFirst()}}</p>
+        <p>Instance First: {{par.first}}</p>
+        <p>Instance Name: {{name}}</p>
+    </div>
+</div>
+
+<!--
+<div ng-controller="UpperController">
+    <input type="text"
+           ng-model="name2"
+           ng-blur="upperFunc();">
+</div>
+-->
+</body>
+</html>
